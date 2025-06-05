@@ -16,7 +16,9 @@ class CreateUserView(APIView):
     """View for user api."""
     def post(self, request, *args, **kwargs):
         """When user makes post request to the create user api."""
-        serializer = UserSerializer(data=request.data)
+        serialzer_class = UserSerializer
+
+        serializer = serialzer_class(data=request.data)
         if serializer.is_valid():
             user = serializer.save()
             return Response(UserSerializer(user).data,
