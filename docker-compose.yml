@@ -9,7 +9,8 @@ services:
       - "8000:8000"
     volumes:
       - ./recipe:/app
-    working_dir: /app 
+      - dev-static-data:/vol/web
+    working_dir: /app
     command: >
       sh -c "python manage.py wait_for_db &&
              python manage.py migrate &&
@@ -31,3 +32,4 @@ services:
       - POSTGRES_PASSWORD=changeme
 volumes:
    dev-db-data:
+   dev-static-data:
